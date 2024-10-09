@@ -1,24 +1,22 @@
 import { CommonModule } from '@angular/common';
-import { ThisReceiver } from '@angular/compiler';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
 import { CreateTransaccionDTO } from '@shared/dto/create-transaccion-dto';
 import { UpdateTransaccionDTO } from '@shared/dto/update-transaccion-dto';
 import { TipoTransaccion } from '@shared/models/tipo-transaccion';
 import { TransaccionModel } from '@shared/models/transaccion-model';
 import { TipoTransaccionService } from '@shared/services/tipo-transaccion.service';
 import { TransaccionService } from '@shared/services/transaccion.service';
-import { forkJoin, never } from 'rxjs';
+import { forkJoin } from 'rxjs';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-transacciones',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, FormsModule, ReactiveFormsModule],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [ CommonModule, FormsModule, ReactiveFormsModule],
+  templateUrl: './transacciones.component.html',
+  styleUrl: './transacciones.component.css'
 })
-export class AppComponent implements OnInit {
+export class TransaccionesComponent implements OnInit {
 
   private formBuilder = inject(FormBuilder);
   private transaccionservices = inject(TransaccionService);
