@@ -1,39 +1,53 @@
-<section>
-  <button  (click)="crearTransaccion()">Crear</button>
-<table>
-  <thead>
-    <tr>
-      <th>Monto</th>
-      <th>motivo</th>
-      <th>Accion</th>
-    </tr>
+<section class="contenedor">
+  <button (click)="crearTransaccion()">Crear</button>
+  <button>salir</button>
+  <table class="tabla">
+    <thead>
+      <tr>
+        <th>Monto</th>
+        <th>motivo</th>
+        <th>Accion</th>
+      </tr>
 
-      
 
-  </thead>
-  <tbody>
-    @for (transaccion of transacciones; track $index) {
+
+    </thead>
+    <tbody>
+      @for (transaccion of transacciones; track $index) {
       <tr>
         <td>{{transaccion.monto}}</td>
         <td>{{transaccion.motivo}}</td>
-        <button (click)="eliminarTransaccion(transaccion.id)">Eliminar</button>
-        <button (click)="actualizarTransaccion(transaccion)">Actualizar</button>
+        <!-- BOTON DE ELIMINAR  -->
+        <div class="caja-botones">
+          <button (click)="eliminarTransaccion(transaccion.id)">
+            <span class="material-symbols-outlined">
+              delete
+            </span>
+            <span class="sub-texto">Eliminar</span>
+          </button>
+          <button (click)="actualizarTransaccion(transaccion)">
+            <span class="material-symbols-outlined">
+              update
+            </span>
+            <span class="sub-texto">actualizar</span>
+          </button>
+        </div>
       </tr>
-    }
-    @empty {
+      }
+      @empty {
       <tr>no hay datos</tr>
-    }
-  </tbody>
-</table>
-@if (formtransaccion) {
+      }
+    </tbody>
+  </table>
+  @if (formtransaccion) {
   <form [formGroup]="formtransaccion">
     <label for="fecha">fecha</label>
     <br>
-    <input  formControlName="fecha" type="date" id="fecha">
+    <input formControlName="fecha" type="date" id="fecha">
     <br>
     <label for="monto">Monto</label>
     <br>
-    <input  formControlName="monto" type="number" id="monto">
+    <input formControlName="monto" type="number" id="monto">
     <br>
     <label for="motivo">Motivo</label>
     <br>
@@ -42,13 +56,12 @@
     <select formControlName="transactiontype_id" id="tipo">
       <option value="null">Selecione un tipo</option>
       @for (item of tipoTransacciones; track $index) {
-        <option [value]="item.id">{{item.tipo_transaccion}}</option>
-       
+      <option [value]="item.id">{{item.tipo_transaccion}}</option>
+
       }
     </select>
     <button (click)="GuardarTransasccion()">Guardar</button>
     <button (click)="cancelarTransasccion()">Cancelar</button>
   </form>
-}
+  }
 </section>
-

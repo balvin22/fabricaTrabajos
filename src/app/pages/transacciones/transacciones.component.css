@@ -13,21 +13,67 @@ section {
     margin: 30px;
     padding: 20px;
 }
-
+.tabla button{
+    background-color:#505050;
+}
+/* caja de botones  */
+.caja-botones{
+    display: flex;
+}
 /* Botones */
 button {
+    display: flex;
+    position: relative;
     background-color: #000000;
     color: white;
     border: none;
+    gap: 10px;
     border-radius: 5px;
-    padding: 10px 15px;
-    margin-right: 10px;
+    padding: 10px ;
+    margin-left: 25px;
+    margin-top:15px;
+    margin-bottom: 10px;
     transition: background-color 0.2s;
 }
-
 button:hover {
     background-color: #2b2b2c;
 }
+.caja-botones .sub-texto{
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translate(-50%,0)rotate(90deg)scale(0);
+    padding: 10px;
+    background-color: #ac1e1e;
+    border-radius: 10px;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+}
+.caja-botones button:hover .sub-texto{
+    opacity: 1;
+    transform:translate(-50%,0) rotate(0deg)scale(1);
+    animation: burbuja;
+    animation-delay: 0.6s;
+    animation-duration:1s ;
+
+}
+@keyframes burbuja {
+    0%{
+        transform: scale(0);
+        color: #ac1e1e;
+    }
+    50%{
+        transform: scale(2.5);
+        color: blue;
+    }
+    100%{
+        transform: scale(4);
+        color: aqua;
+    }
+    
+}
+
 
 /* Tabla */
 table {
@@ -40,7 +86,7 @@ th, td {
     padding: 10px;
     text-align: left;
 }
-
+ 
 th {
     background-color: #df9096;
     color: white;
@@ -52,7 +98,7 @@ tr:hover {
 
 /* Formulario */
 form {
-    margin-top: 20px;
+    margin-top: 20px;                            
 }
 
 select{

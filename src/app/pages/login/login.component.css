@@ -1,0 +1,31 @@
+section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+form{
+    display: flex;
+    margin-top: 30px;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
+    border: solid black 1px;
+    background-color: aqua;
+    
+}
+form input{
+    padding: 10px;
+    border-radius:10px ;
+    border: none;
+}
+button{
+    padding: 5px;
+    border-radius:10px;
+    margin-top: 20px;
+    border: none;
+}
+button:hover{
+    background-color:rgb(37, 179, 179);
+}

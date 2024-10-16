@@ -12,7 +12,7 @@ import { forkJoin } from 'rxjs';
 @Component({
   selector: 'app-transacciones',
   standalone: true,
-  imports: [ CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './transacciones.component.html',
   styleUrl: './transacciones.component.css'
 })
@@ -66,17 +66,17 @@ export class TransaccionesComponent implements OnInit {
     }
     const { value } = this.formtransaccion;
     console.log(this.formtransaccion.get('id'));
-    if(this.formtransaccion.get('id')){
-      const nuevaTransaccion:UpdateTransaccionDTO=value as  UpdateTransaccionDTO;
-      const UpdatesaveSub=this.transaccionservices.update(nuevaTransaccion).subscribe({
-        next: (transaccion)=>{
-          let transacciones =[...this.transacciones];
-          let transacciones_index= transacciones.findIndex((transaccion)=>transaccion.id===nuevaTransaccion.id);
-          transacciones[transacciones_index]=transaccion;
-          this.transacciones= transacciones;
+    if (this.formtransaccion.get('id')) {
+      const nuevaTransaccion: UpdateTransaccionDTO = value as UpdateTransaccionDTO;
+      const UpdatesaveSub = this.transaccionservices.update(nuevaTransaccion).subscribe({
+        next: (transaccion) => {
+          let transacciones = [...this.transacciones];
+          let transacciones_index = transacciones.findIndex((transaccion) => transaccion.id === nuevaTransaccion.id);
+          transacciones[transacciones_index] = transaccion;
+          this.transacciones = transacciones;
           this.cancelarTransasccion();
         },
-        complete(){
+        complete() {
           UpdatesaveSub.unsubscribe();
         }
       })
@@ -95,16 +95,16 @@ export class TransaccionesComponent implements OnInit {
     })
 
   }
-  eliminarTransaccion(id:number) {
-    const deleteSub=this.transaccionservices.delete(id).subscribe({
-      next:(value)=>{
-        let transacciones=[...this.transacciones]
-        let transacciones_index=transacciones.findIndex((transaccion)=>transaccion.id===id);
-        transacciones.splice(transacciones_index,1);
+  eliminarTransaccion(id: number) {
+    const deleteSub = this.transaccionservices.delete(id).subscribe({
+      next: (value) => {
+        let transacciones = [...this.transacciones]
+        let transacciones_index = transacciones.findIndex((transaccion) => transaccion.id === id);
+        transacciones.splice(transacciones_index, 1);
         this.transacciones = transacciones;
 
-        },
-      complete:()=>{
+      },
+      complete: () => {
         deleteSub.unsubscribe();
       }
     })
@@ -121,16 +121,18 @@ export class TransaccionesComponent implements OnInit {
 
   //   });
   // }
-    actualizarTransaccion( transaccion:TransaccionModel){
-      this.formtransaccion= this.formBuilder.group({
-        id:new FormControl(transaccion.id),
-        monto:new FormControl(transaccion.monto,[Validators.required]),
-        motivo:new FormControl(transaccion.motivo,[Validators.required]),
-        fecha:new  FormControl(transaccion.fecha,[Validators.required]),
-        transactiontype_id:new FormControl(transaccion.transactiontype_id,[Validators.required])
-      })
-      
-    
-  
-}
+  actualizarTransaccion(transaccion: TransaccionModel) {
+    this.formtransaccion = this.formBuilder.group({
+      id: new FormControl(transaccion.id),
+      monto: new FormControl(transaccion.monto, [Validators.required]),
+      motivo: new FormControl(transaccion.motivo, [Validators.required]),
+      fecha: new FormControl(transaccion.fecha, [Validators.required]),
+      transactiontype_id: new FormControl(transaccion.transactiontype_id, [Validators.required])
+    })
+
+
+
+  }
+
+
 }
